@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>אביקו שירותי מוזיקה | בוזוקי יווני לאירועים</title>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;700&family=Platypi:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-blue: #003366;
+            --gold: #D4AF37;
+            --light-bg: #f4f4f9;
+            --white: #ffffff;
+            --dark-text: #333;
+        }
+
+        body {
+            font-family: 'Assistant', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--dark-text);
+            background-color: var(--light-bg);
+            line-height: 1.6;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 51, 102, 0.7), rgba(0, 51, 102, 0.7)), url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); /* תמונת גיבוי */
+            background-size: cover;
+            background-position: center;
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            max-width: 700px;
+            margin-bottom: 30px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+            font-size: 1.1rem;
+        }
+
+        .btn-gold {
+            background-color: var(--gold);
+            color: var(--primary-blue);
+        }
+
+        .btn-gold:hover {
+            background-color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        /* Sections */
+        .section {
+            padding: 60px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--gold);
+            margin: 10px auto;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-bottom: 4px solid var(--gold);
+        }
+
+        .service-card i {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+
+        /* Media Placeholder */
+        .media-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .media-box {
+            background: #ddd;
+            height: 250px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .media-box span {
+            color: #666;
+            font-weight: bold;
+        }
+
+        /* Contact Section */
+        .contact-bar {
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 40px 20px;
+            border-radius: 20px;
+            margin-top: 40px;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            font-size: 1.3rem;
+        }
+
+        .contact-links a {
+            color: var(--white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.3s;
+        }
+
+        .contact-links a:hover {
+            color: var(--gold);
+        }
+
+        footer {
+            padding: 20px;
+            background: #001a33;
+            color: #ccc;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        /* WhatsApp Floating Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 35px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .hero p { font-size: 1.1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <h1>אביקו שירותי מוזיקה</h1>
+        <p>חווית בוזוקי יוונית אותנטית שתהפוך את האירוע שלכם לבלתי נשכח</p>
+        <div class="btn-group">
+            <a href="#contact" class="btn btn-gold">להזמנת אירוע</a>
+            <a href="#gallery" class="btn" style="border: 1px solid white; color: white;">צפו בגלריה</a>
+        </div>
+    </header>
+
+    <section class="section">
+        <h2>השירותים שלי</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fas fa-cocktail"></i>
+                <h3>קבלות פנים</h3>
+                <p>נגינת בוזוקי יוקרתית ונעימה שיוצרת אווירה יוונית קלאסית כבר מהרגע הראשון.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-fire"></i>
+                <h3>פריצות לרחבה</h3>
+                <p>אנרגיות שיא בלב הריקודים עם להיטים יווניים וים-תיכוניים שמרקידים את כולם.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-star"></i>
+                <h3>אירועי חברה ופרטיים</h3>
+                <p>הופעה מותאמת אישית לערבי גיבוש, חתונות, בר מצוות וימי הולדת.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="gallery" style="background-color: #ececf3;">
+        <h2>גלריית רגעים</h2>
+        <p>תמונות ווידאו מהשטח</p>
+        <div class="media-container">
+            <div class="media-box"><span><i class="fas fa-image"></i> כאן תבוא תמונה שלך</span></div>
+            <div class="media-box"><span><i class="fas fa-play-circle"></i> כאן יבוא סרטון וידאו</span></div>
+            <div class="media-box"><span><i class="fas fa-image"></i> כאן תבוא תמונה מהקהל</span></div>
+        </div>
+    </section>
+
+    <section class="section" id="contact">
+        <h2>בואו נחגוג יחד</h2>
+        <div class="contact-bar">
+            <div class="contact-links">
+                <a href="tel:0500000000"><i class="fas fa-phone"></i> 050-XXXXXXX</a>
+                <a href="mailto:office@aviko.co.il"><i class="fas fa-envelope"></i> office@aviko.co.il</a>
+                <a href="https://wa.me/972500000000"><i class="fab fa-whatsapp"></i> שלחו הודעה</a>
+            </div>
+        </div>
+    </section>
+
+    <a href="https://wa.me/972500000000" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <footer>
+        <p>אביקו שירותי מוזיקה &copy; 2026 | עיצוב ופיתוח: AI Collaborator</p>
+    </footer>
+
+</body>
+</html>
