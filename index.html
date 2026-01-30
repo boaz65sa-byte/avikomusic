@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aviko | ΑΒΙΚΟ</title>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
+    <title>Aviko | Αβίκο</title>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&family=GFS+Didot&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -35,14 +35,6 @@
             border: 1px dashed var(--greek-blue);
             background: rgba(13, 94, 175, 0.05);
             cursor: text;
-            position: relative;
-        }
-
-        body.admin-mode .editable:focus {
-            outline: none;
-            background: #fff;
-            border: 1px solid var(--greek-blue);
-            box-shadow: 0 0 10px rgba(13, 94, 175, 0.2);
         }
 
         .admin-controls {
@@ -66,12 +58,13 @@
             transition: 0.3s;
         }
         
-        .admin-btn.save { background: #28a745; display: none; } /* מופיע רק במצב עריכה */
+        .admin-btn.save { background: #28a745; display: none; }
         .admin-btn:hover { transform: scale(1.1); }
 
-        /* --- Header: לוגו כפול --- */
+        /* --- Hero Section המעודכן עם וידאו --- */
         .hero {
-            height: 90vh;
+            min-height: 100vh;
+            /* תמונת הרקע המקורית - תשמש כברירת מחדל אם אין וידאו */
             background: url('https://images.unsplash.com/photo-1516483638261-f4dbaf036963?q=80&w=1920&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
@@ -80,39 +73,57 @@
             justify-content: center;
             text-align: center;
             position: relative;
+            padding: 20px;
+            overflow: hidden; /* חשוב כדי שהוידאו לא יגלוש */
         }
 
+        /* אלמנט הוידאו החדש ברקע */
+        #heroBgVideo {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* פורס את הוידאו על כל המסך */
+            z-index: 0; /* השכבה הכי נמוכה */
+            opacity: 0; /* מוסתר כברירת מחדל עד שייטען */
+            transition: opacity 1s ease; /* הופעה חלקה */
+        }
+
+        /* שכבת הבהרה (מעל הוידאו/תמונה) */
         .hero::before {
             content: '';
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(255, 255, 255, 0.2); /* שכבת הבהרה */
+            background: rgba(255, 255, 255, 0.3);
+            z-index: 1; /* מעל הוידאו */
         }
 
+        /* הקופסה הלבנה עם התוכן */
         .hero-box {
             background: rgba(255, 255, 255, 0.95);
-            padding: 50px 80px;
-            border-radius: 4px;
-            border: 5px solid var(--greek-blue);
-            z-index: 2;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            padding: 40px 60px;
+            border-radius: 8px;
+            border: 4px solid var(--greek-blue);
+            z-index: 2; /* מעל הכל */
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
             max-width: 900px;
+            width: 100%;
+            position: relative;
         }
 
-        /* הטקסט היווני */
         .greek-logo {
-            font-family: 'Cinzel Decorative', cursive;
+            font-family: 'GFS Didot', serif;
             font-size: 5rem;
             color: var(--greek-blue);
-            line-height: 1;
-            margin-bottom: 5px;
+            line-height: 1.2;
+            margin-bottom: 0px;
             text-shadow: 1px 1px 0px #ccc;
         }
 
-        /* הטקסט העברי */
         .hebrew-logo {
             font-family: 'Heebo', sans-serif;
-            font-size: 4rem;
+            font-size: 3.5rem;
             font-weight: 900;
             color: #222;
             line-height: 1;
@@ -121,12 +132,52 @@
         }
 
         .subtitle {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             color: #555;
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+
+        .hero-socials {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
             margin-bottom: 30px;
         }
 
-        /* --- כרטיסי שירותים (לשוניות) --- */
+        .social-link {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: white;
+            text-decoration: none;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .social-link:hover { transform: translateY(-5px); }
+        .social-link.insta { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+        .social-link.tiktok { background: #000000; }
+        .social-link.whatsapp-hero { background: #25d366; }
+
+        .cta-btn {
+            text-decoration: none;
+            display: inline-block;
+            background: var(--gold);
+            color: #000;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: 0.3s;
+        }
+        .cta-btn:hover { background: #000; color: var(--gold); }
+
+        /* --- כרטיסי שירותים --- */
         .services {
             padding: 80px 20px;
             max-width: 1200px;
@@ -146,16 +197,14 @@
         }
         .card:hover { transform: translateY(-10px); }
         .card i { font-size: 3rem; color: var(--gold); margin-bottom: 20px; }
-        .card h3 { color: var(--greek-blue); font-size: 1.6rem; margin-bottom: 10px; font-weight: 800; }
 
-        /* --- גלריה ומערכת העלאה --- */
+        /* --- גלריה וניהול מדיה --- */
         .gallery-section {
             background: white;
             padding: 60px 20px;
             text-align: center;
         }
 
-        /* פאנל העלאה */
         .upload-panel {
             background: #f8f9fa;
             border: 2px dashed var(--greek-blue);
@@ -163,25 +212,16 @@
             max-width: 600px;
             margin: 20px auto;
             border-radius: 10px;
-            display: none; /* מוסתר כברירת מחדל */
+            display: none;
+            max-height: 80vh; /* כדי שלא יחרוג מהמסך */
+            overflow-y: auto;
         }
         
         body.admin-mode .upload-panel { display: block; animation: fadeIn 0.5s; }
 
         .input-group { margin-bottom: 15px; text-align: right; }
-        .input-group label { display: block; font-weight: bold; margin-bottom: 5px; }
-        .form-control { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-family: 'Heebo'; }
-        
-        .upload-btn {
-            background: var(--greek-blue);
-            color: white;
-            padding: 12px 30px;
-            border: none;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 1.1rem;
-            width: 100%;
-        }
+        .form-control { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; }
+        .upload-btn-action { background: var(--greek-blue); color: white; padding: 10px; border: none; cursor: pointer; width: 100%; font-weight: bold; }
 
         .media-grid {
             display: grid;
@@ -196,74 +236,60 @@
             background: #000;
             border-radius: 10px;
             overflow: hidden;
-            height: 300px; /* גובה אחיד */
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            height: 300px;
         }
 
-        .media-item img, .media-item iframe {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border: none;
-        }
-
-        .delete-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: red;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            cursor: pointer;
-            display: none;
-            z-index: 10;
-        }
+        .media-item img, .media-item iframe { width: 100%; height: 100%; object-fit: cover; border: none; }
         
+        .delete-btn {
+            position: absolute; top: 10px; right: 10px; background: red; color: white;
+            border: none; padding: 5px 10px; cursor: pointer; display: none; z-index: 10;
+        }
         body.admin-mode .delete-btn { display: block; }
 
-        /* כפתור וואטסאפ */
+        /* כפתור וואטסאפ צף */
         .whatsapp-float {
-            position: fixed;
-            bottom: 30px;
-            left: 30px;
-            background-color: #25d366;
-            color: white;
-            padding: 15px 25px;
-            border-radius: 50px;
-            font-weight: bold;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.2rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            z-index: 900;
+            position: fixed; bottom: 30px; left: 30px;
+            background-color: #25d366; color: white;
+            padding: 15px 25px; border-radius: 50px;
+            font-weight: bold; text-decoration: none;
+            display: flex; align-items: center; gap: 10px;
+            font-size: 1.2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 900;
         }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* מובייל */
+        
         @media (max-width: 768px) {
-            .hero-box { padding: 30px; width: 90%; }
+            .hero-box { padding: 30px 20px; }
             .greek-logo { font-size: 3.5rem; }
             .hebrew-logo { font-size: 2.8rem; }
+            .hero-socials { gap: 15px; }
+            .social-link { width: 50px; height: 50px; font-size: 24px; }
         }
     </style>
 </head>
 <body>
 
     <div class="admin-controls">
-        <button class="admin-btn save" onclick="saveAllChanges()"><i class="fas fa-save"></i> שמור שינויים</button>
+        <button class="admin-btn save" onclick="saveAllChanges()"><i class="fas fa-save"></i> שמור</button>
         <button class="admin-btn" onclick="toggleAdminMode()"><i class="fas fa-cog"></i> עריכה</button>
     </div>
 
     <header class="hero">
+        <video id="heroBgVideo" autoplay muted loop playsinline></video>
+
         <div class="hero-box">
-            <div class="greek-logo editable" id="txt_greek">ΑΒΙΚΟ</div>
+            <div class="greek-logo editable" id="txt_greek">Αβίκο</div>
             <div class="hebrew-logo editable" id="txt_hebrew">אביקו</div>
             <div class="subtitle editable" id="txt_sub">מוזיקה יוונית מהנשמה | טברנה | חתונות | אירועים</div>
-            <a href="https://wa.me/972502266443" class="upload-btn" style="text-decoration: none; display: inline-block; width: auto; background: var(--gold); color: #000;">הזמן אירוע עכשיו</a>
+            
+            <div class="hero-socials">
+                <a href="https://www.instagram.com/aviko72" target="_blank" class="social-link insta"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@aviko1972" target="_blank" class="social-link tiktok"><i class="fab fa-tiktok"></i></a>
+                <a href="https://wa.me/972502266443" target="_blank" class="social-link whatsapp-hero"><i class="fab fa-whatsapp"></i></a>
+            </div>
+
+            <a href="#contact" class="cta-btn">שריין תאריך לאירוע</a>
         </div>
     </header>
 
@@ -289,36 +315,47 @@
         <h2 class="editable" id="gallery_title" style="font-size: 2.5rem; color: var(--greek-blue); margin-bottom: 20px;">הגלריה שלנו</h2>
         
         <div class="upload-panel">
-            <h3 style="margin-bottom: 20px;">הוספת מדיה (תמונה או וידאו)</h3>
             
+            <div style="background: #e9ecef; padding: 15px; border-radius: 8px; margin-bottom: 30px;">
+                 <h3 style="margin-bottom: 10px; color: var(--greek-blue);">ניהול וידאו רקע ראשי (Hero)</h3>
+                 <p style="font-size: 0.9rem; margin-bottom: 10px;">העלה קובץ וידאו קצר (MP4) שיתנגן ברקע של הכותרת. <strong>שים לב:</strong> קבצים גדולים עלולים לא להישמר.</p>
+                 <div class="input-group">
+                     <input type="file" id="heroVideoFile" class="form-control" accept="video/mp4,video/webm">
+                 </div>
+                 <div style="display: flex; gap: 10px;">
+                     <button class="upload-btn-action" onclick="setHeroVideo()" style="background: var(--gold); color: black; flex: 2;">החלף וידאו רקע</button>
+                     <button class="upload-btn-action" onclick="clearHeroVideo()" style="background: #dc3545; flex: 1;">מחק וידאו (חזור לתמונה)</button>
+                 </div>
+            </div>
+            <hr style="margin: 20px 0;">
+
+            <h3 style="margin-bottom: 15px;">הוספת מדיה לגלריה</h3>
             <div class="input-group">
-                <label>סוג מדיה:</label>
                 <select id="mediaType" class="form-control" onchange="toggleInputs()">
-                    <option value="image">תמונה מהמחשב</option>
+                    <option value="image">תמונה</option>
                     <option value="video">וידאו (YouTube Embed)</option>
                 </select>
             </div>
-
             <div class="input-group" id="imageInputGroup">
-                <label>בחר תמונה:</label>
                 <input type="file" id="imgFile" class="form-control" accept="image/*">
             </div>
-
             <div class="input-group" id="videoInputGroup" style="display:none;">
-                <label>הדבק קוד הטמעה (Embed) מיוטיוב:</label>
-                <input type="text" id="videoUrl" class="form-control" placeholder='למשל: https://www.youtube.com/embed/XXXXXX'>
-                <small style="color: #666;">כנס ליוטיוב -> שתף -> הטמעה (Embed) -> העתק את הקישור שבתוך ה-src</small>
+                <input type="text" id="videoUrl" class="form-control" placeholder='לינק הטמעה מיוטיוב'>
             </div>
-
-            <button class="upload-btn" onclick="addMedia()">הוסף לגלריה</button>
+            <button class="upload-btn-action" onclick="addMedia()">הוסף לגלריה</button>
         </div>
 
         <div class="media-grid" id="mediaGrid"></div>
     </section>
 
-    <footer style="background: #222; color: #fff; padding: 40px; text-align: center;">
-        <p>AVIKO &copy; 2026</p>
-        <p style="font-size: 0.9rem; color: #777;">Developed by Boaz & Avi</p>
+    <footer style="background: var(--greek-blue); color: #fff; padding: 40px; text-align: center;" id="contact">
+        <h2 style="font-family: 'GFS Didot', serif; font-size: 3rem; margin-bottom: 10px;">Αβίκο</h2>
+        <p>להזמנות: 050-2266443</p>
+        <div style="display: flex; justify-content: center; gap: 20px; margin-top: 20px;">
+            <a href="https://www.instagram.com/aviko72" target="_blank" style="color: white; font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@aviko1972" target="_blank" style="color: white; font-size: 1.5rem;"><i class="fab fa-tiktok"></i></a>
+        </div>
+        <p style="margin-top: 20px; font-size: 0.8rem; opacity: 0.8;">Aviko Music &copy; 2026</p>
     </footer>
 
     <a href="https://wa.me/972502266443" class="whatsapp-float" target="_blank">
@@ -326,21 +363,20 @@
     </a>
 
     <script>
-        // --- ניהול מצב עריכה ---
+        // --- לוגיקה קיימת (עריכת טקסטים וגלריה) ---
         let isAdmin = false;
-
         function toggleAdminMode() {
             isAdmin = !isAdmin;
             const body = document.body;
             const saveBtn = document.querySelector('.admin-btn.save');
-            const editBtn = document.querySelector('.admin-btn:not(.save)'); // כפתור העריכה
-
+            const editBtn = document.querySelector('.admin-btn:not(.save)');
             if (isAdmin) {
                 body.classList.add('admin-mode');
                 saveBtn.style.display = 'block';
-                editBtn.innerHTML = '<i class="fas fa-times"></i> סיום עריכה';
-                // הפוך את כל האלמנטים עם class="editable" לנערכים
+                editBtn.innerHTML = '<i class="fas fa-times"></i> סיום';
                 document.querySelectorAll('.editable').forEach(el => el.setAttribute('contenteditable', 'true'));
+                // גלילה אוטומטית לפאנל הניהול
+                document.querySelector('.upload-panel').scrollIntoView({ behavior: 'smooth' });
             } else {
                 body.classList.remove('admin-mode');
                 saveBtn.style.display = 'none';
@@ -348,23 +384,15 @@
                 document.querySelectorAll('.editable').forEach(el => el.setAttribute('contenteditable', 'false'));
             }
         }
-
-        // --- שמירת טקסטים ---
         function saveAllChanges() {
-            // 1. שמירת הטקסטים
             const texts = {};
-            document.querySelectorAll('.editable').forEach(el => {
-                texts[el.id] = el.innerText;
-            });
-            localStorage.setItem('aviko_texts', JSON.stringify(texts));
-            
-            alert('כל השינויים נשמרו בהצלחה!');
-            toggleAdminMode(); // יציאה ממצב עריכה
+            document.querySelectorAll('.editable').forEach(el => texts[el.id] = el.innerText);
+            localStorage.setItem('aviko_texts_v2', JSON.stringify(texts));
+            alert('נשמר!');
+            toggleAdminMode();
         }
-
-        // --- טעינת טקסטים בעליית האתר ---
         function loadTexts() {
-            const storedTexts = JSON.parse(localStorage.getItem('aviko_texts'));
+            const storedTexts = JSON.parse(localStorage.getItem('aviko_texts_v2'));
             if (storedTexts) {
                 for (const [id, text] of Object.entries(storedTexts)) {
                     const el = document.getElementById(id);
@@ -372,79 +400,118 @@
                 }
             }
         }
-
-        // --- ניהול מדיה (תמונות/וידאו) ---
         function toggleInputs() {
             const type = document.getElementById('mediaType').value;
             document.getElementById('imageInputGroup').style.display = type === 'image' ? 'block' : 'none';
             document.getElementById('videoInputGroup').style.display = type === 'video' ? 'block' : 'none';
         }
-
         function addMedia() {
             const type = document.getElementById('mediaType').value;
-            let content = '';
-
             if (type === 'image') {
                 const fileInput = document.getElementById('imgFile');
                 if (fileInput.files && fileInput.files[0]) {
                     const reader = new FileReader();
-                    reader.onload = function(e) {
-                        saveMediaItem({ type: 'image', src: e.target.result });
-                    };
+                    reader.onload = function(e) { saveMediaItem({ type: 'image', src: e.target.result }); };
                     reader.readAsDataURL(fileInput.files[0]);
                 }
             } else {
                 const url = document.getElementById('videoUrl').value;
-                if (url) {
-                    saveMediaItem({ type: 'video', src: url });
-                }
+                if (url) saveMediaItem({ type: 'video', src: url });
             }
         }
-
         function saveMediaItem(item) {
-            let gallery = JSON.parse(localStorage.getItem('aviko_gallery')) || [];
-            gallery.unshift(item); // הוסף להתחלה
-            localStorage.setItem('aviko_gallery', JSON.stringify(gallery));
+            let gallery = JSON.parse(localStorage.getItem('aviko_gallery_v2')) || [];
+            gallery.unshift(item);
+            localStorage.setItem('aviko_gallery_v2', JSON.stringify(gallery));
             renderGallery();
-            // איפוס שדות
             document.getElementById('imgFile').value = '';
             document.getElementById('videoUrl').value = '';
         }
-
         function deleteMedia(index) {
-            if(!confirm('למחוק את הפריט הזה?')) return;
-            let gallery = JSON.parse(localStorage.getItem('aviko_gallery')) || [];
+            if(!confirm('למחוק?')) return;
+            let gallery = JSON.parse(localStorage.getItem('aviko_gallery_v2')) || [];
             gallery.splice(index, 1);
-            localStorage.setItem('aviko_gallery', JSON.stringify(gallery));
+            localStorage.setItem('aviko_gallery_v2', JSON.stringify(gallery));
             renderGallery();
         }
-
         function renderGallery() {
             const grid = document.getElementById('mediaGrid');
             grid.innerHTML = '';
-            const gallery = JSON.parse(localStorage.getItem('aviko_gallery')) || [];
-
+            const gallery = JSON.parse(localStorage.getItem('aviko_gallery_v2')) || [];
             gallery.forEach((item, index) => {
                 const div = document.createElement('div');
                 div.className = 'media-item';
-                
                 let innerHTML = `<button class="delete-btn" onclick="deleteMedia(${index})">X</button>`;
-                
-                if (item.type === 'image') {
-                    innerHTML += `<img src="${item.src}">`;
-                } else {
-                    innerHTML += `<iframe src="${item.src}" allowfullscreen></iframe>`;
-                }
-                
+                if (item.type === 'image') innerHTML += `<img src="${item.src}">`;
+                else innerHTML += `<iframe src="${item.src}" allowfullscreen></iframe>`;
                 div.innerHTML = innerHTML;
                 grid.appendChild(div);
             });
+        }
+
+        // --- לוגיקה חדשה: ניהול וידאו רקע (Hero Video) ---
+        function setHeroVideo() {
+            const fileInput = document.getElementById('heroVideoFile');
+            if (fileInput.files && fileInput.files[0]) {
+                // בדיקת גודל קובץ (מגבלה של 5MB בערך לדפדפן)
+                if (fileInput.files[0].size > 5 * 1024 * 1024) {
+                    alert('הקובץ גדול מדי! אנא בחר וידאו קצר יותר (עד 5MB).');
+                    return;
+                }
+
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const videoData = e.target.result;
+                    try {
+                        localStorage.setItem('aviko_hero_video', videoData);
+                        applyHeroVideo(videoData);
+                        alert('וידאו הרקע עודכן בהצלחה!');
+                    } catch (error) {
+                        alert('שגיאה: הקובץ גדול מדי לזיכרון הדפדפן.');
+                    }
+                };
+                reader.readAsDataURL(fileInput.files[0]);
+            } else {
+                alert('אנא בחר קובץ וידאו (MP4).');
+            }
+        }
+
+        function clearHeroVideo() {
+            if(confirm('האם למחוק את וידאו הרקע ולחזור לתמונה?')) {
+                localStorage.removeItem('aviko_hero_video');
+                const videoEl = document.getElementById('heroBgVideo');
+                videoEl.style.opacity = '0';
+                setTimeout(() => { videoEl.src = ''; }, 1000); // ניקוי המקור אחרי האנימציה
+                alert('הוידאו נמחק. חזרנו לתמונת הרקע.');
+            }
+        }
+
+        function applyHeroVideo(videoData) {
+            const videoEl = document.getElementById('heroBgVideo');
+            if (videoData) {
+                videoEl.src = videoData;
+                // הצגת הוידאו רק כשהוא מוכן לניגון
+                videoEl.oncanplay = function() {
+                    videoEl.style.opacity = '1';
+                    videoEl.play();
+                };
+            } else {
+                videoEl.style.opacity = '0';
+            }
+        }
+
+        function loadHeroVideo() {
+            const storedVideo = localStorage.getItem('aviko_hero_video');
+            if (storedVideo) {
+                applyHeroVideo(storedVideo);
+            }
         }
 
         // --- אתחול ---
         window.onload = function() {
             loadTexts();
             renderGallery();
+            loadHeroVideo(); // טעינת וידאו רקע אם קיים
         }
     </script>
 
