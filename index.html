@@ -3,287 +3,689 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>אביקו שירותי מוזיקה | בוזוקי יווני לאירועים</title>
-    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;700&family=Platypi:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
+    <title>Aviko | המאסטרו של הבוזוקי</title>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&family=Rubik+Glitch&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
         :root {
-            --primary-blue: #003366;
-            --gold: #D4AF37;
-            --light-bg: #f4f4f9;
-            --white: #ffffff;
-            --dark-text: #333;
+            --bg-dark: #050505;
+            --neon-blue: #00f2ea;
+            --neon-pink: #ff0055;
+            --gold: #FFD700;
+            --glass: rgba(255, 255, 255, 0.05);
         }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Assistant', sans-serif;
-            margin: 0;
-            padding: 0;
-            color: var(--dark-text);
-            background-color: var(--light-bg);
-            line-height: 1.6;
+            background-color: var(--bg-dark);
+            color: #fff;
+            font-family: 'Heebo', sans-serif;
+            overflow-x: hidden;
         }
 
-        /* Hero Section */
+        /* --- אפקטים מיוחדים --- */
+        .glow-text {
+            text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
+        }
+        
+        .gold-text {
+            color: var(--gold);
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        /* --- Hero Section: אווירת מועדון --- */
         .hero {
-            background: linear-gradient(rgba(0, 51, 102, 0.7), rgba(0, 51, 102, 0.7)), url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); /* תמונת גיבוי */
+            height: 100vh;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2), #050505), url('https://images.unsplash.com/photo-1575881875476-087b97950b84?q=80&w=1920&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
-            height: 90vh;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
-            text-align: center;
-            color: var(--white);
-            padding: 0 20px;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-
-        .hero p {
-            font-size: 1.5rem;
-            max-width: 700px;
-            margin-bottom: 30px;
-        }
-
-        .btn-group {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
             justify-content: center;
-        }
-
-        .btn {
-            padding: 12px 30px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: 0.3s;
-            font-size: 1.1rem;
-        }
-
-        .btn-gold {
-            background-color: var(--gold);
-            color: var(--primary-blue);
-        }
-
-        .btn-gold:hover {
-            background-color: var(--white);
-            transform: translateY(-3px);
-        }
-
-        /* Sections */
-        .section {
-            padding: 60px 20px;
-            max-width: 1100px;
-            margin: 0 auto;
             text-align: center;
-        }
-
-        h2 {
-            font-size: 2.5rem;
-            color: var(--primary-blue);
-            margin-bottom: 40px;
             position: relative;
         }
 
-        h2::after {
+        .hero::before {
             content: '';
-            display: block;
-            width: 60px;
-            height: 3px;
-            background: var(--gold);
-            margin: 10px auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, transparent 20%, #050505 90%);
         }
 
-        /* Services Grid */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        .hero-content {
+            z-index: 2;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .hero h2 {
+            font-size: 2rem;
+            font-weight: 300;
+            letter-spacing: 5px;
+            margin-bottom: 30px;
+            color: #ccc;
+        }
+
+        /* --- כפתורי סושיאל זוהרים --- */
+        .social-bar {
+            display: flex;
             gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
         }
 
-        .service-card {
-            background: var(--white);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            transition: 0.3s;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            border-bottom: 4px solid var(--gold);
-        }
-
-        .service-card i {
-            font-size: 2.5rem;
-            color: var(--gold);
-            margin-bottom: 15px;
-        }
-
-        /* Media Placeholder */
-        .media-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .media-box {
-            background: #ddd;
-            height: 250px;
-            border-radius: 10px;
+        .social-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 24px;
+            color: white;
+            text-decoration: none;
+            transition: 0.3s;
+            border: 1px solid rgba(255,255,255,0.2);
             position: relative;
             overflow: hidden;
         }
 
-        .media-box span {
-            color: #666;
-            font-weight: bold;
-        }
+        .social-btn:hover { transform: scale(1.1) rotate(5deg); }
+        .social-btn.whatsapp:hover { background: #25d366; box-shadow: 0 0 20px #25d366; }
+        .social-btn.instagram:hover { background: #E1306C; box-shadow: 0 0 20px #E1306C; }
+        .social-btn.tiktok:hover { background: #00f2ea; color: black; box-shadow: 0 0 20px #00f2ea; }
+        .social-btn.phone:hover { background: var(--gold); color: black; box-shadow: 0 0 20px var(--gold); }
 
-        /* Contact Section */
-        .contact-bar {
-            background: var(--primary-blue);
-            color: var(--white);
-            padding: 40px 20px;
-            border-radius: 20px;
-            margin-top: 40px;
-        }
-
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-            font-size: 1.3rem;
-        }
-
-        .contact-links a {
-            color: var(--white);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: 0.3s;
-        }
-
-        .contact-links a:hover {
-            color: var(--gold);
-        }
-
-        footer {
+        /* --- ממשק העלאה (Admin Panel) --- */
+        .admin-panel {
+            background: #1a1a1a;
             padding: 20px;
-            background: #001a33;
-            color: #ccc;
+            margin: 40px auto;
+            max-width: 600px;
+            border-radius: 15px;
+            border: 1px solid #333;
             text-align: center;
-            font-size: 0.9rem;
+            display: none; /* מוסתר כברירת מחדל */
         }
 
-        /* WhatsApp Floating Button */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            background-color: #25d366;
+        .admin-panel.active { display: block; animation: slideDown 0.5s; }
+
+        .admin-input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            background: #333;
+            border: none;
             color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50px;
-            text-align: center;
-            font-size: 35px;
-            box-shadow: 2px 2px 3px #999;
-            z-index: 100;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
+            border-radius: 5px;
         }
 
+        .upload-btn {
+            background: var(--neon-blue);
+            color: black;
+            font-weight: bold;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* --- גלריה דינמית --- */
+        .gallery-section {
+            padding: 50px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-card {
+            background: var(--glass);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .gallery-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .gallery-info {
+            padding: 15px;
+        }
+
+        .gallery-info h3 { color: var(--gold); margin-bottom: 5px; }
+
+        /* --- מנגנון ניהול --- */
+        .toggle-admin {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            opacity: 0.3;
+            cursor: pointer;
+            z-index: 999;
+            font-size: 20px;
+        }
+        .toggle-admin:hover { opacity: 1; }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px;
+            border-top: 1px solid #333;
+            color: #666;
+            margin-top: 50px;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideDown { from { transform: translateY(-20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.2rem; }
-            .hero p { font-size: 1.1rem; }
+            .hero h1 { font-size: 3.5rem; }
         }
     </style>
 </head>
 <body>
 
+    <div class="toggle-admin" onclick="toggleAdmin()"><i class="fas fa-cog"></i></div>
+
     <header class="hero">
-        <h1>אביקו שירותי מוזיקה</h1>
-        <p>חווית בוזוקי יוונית אותנטית שתהפוך את האירוע שלכם לבלתי נשכח</p>
-        <div class="btn-group">
-            <a href="#contact" class="btn btn-gold">להזמנת אירוע</a>
-            <a href="#gallery" class="btn" style="border: 1px solid white; color: white;">צפו בגלריה</a>
+        <div class="hero-content">
+            <h1 class="glow-text">AVIKO</h1>
+            <h2 class="gold-text">GREEK MUSIC MASTER</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">הבוזוקי | הנשמה | הטברנה</p>
+            
+            <div class="social-bar">
+                <a href="tel:0502266443" class="social-btn phone"><i class="fas fa-phone"></i></a>
+                <a href="https://wa.me/972502266443" target="_blank" class="social-btn whatsapp"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://www.instagram.com/aviko72" target="_blank" class="social-btn instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@aviko1972" target="_blank" class="social-btn tiktok"><i class="fab fa-tiktok"></i></a>
+            </div>
         </div>
     </header>
 
-    <section class="section">
-        <h2>השירותים שלי</h2>
-        <div class="services-grid">
-            <div class="service-card">
-                <i class="fas fa-cocktail"></i>
-                <h3>קבלות פנים</h3>
-                <p>נגינת בוזוקי יוקרתית ונעימה שיוצרת אווירה יוונית קלאסית כבר מהרגע הראשון.</p>
-            </div>
-            <div class="service-card">
-                <i class="fas fa-fire"></i>
-                <h3>פריצות לרחבה</h3>
-                <p>אנרגיות שיא בלב הריקודים עם להיטים יווניים וים-תיכוניים שמרקידים את כולם.</p>
-            </div>
-            <div class="service-card">
-                <i class="fas fa-star"></i>
-                <h3>אירועי חברה ופרטיים</h3>
-                <p>הופעה מותאמת אישית לערבי גיבוש, חתונות, בר מצוות וימי הולדת.</p>
-            </div>
-        </div>
-    </section>
+    <div class="admin-panel" id="adminPanel">
+        <h3 style="color:var(--neon-blue); margin-bottom:15px;">הוספת תוכן לאתר (מצב מנהל)</h3>
+        <input type="text" id="imgTitle" class="admin-input" placeholder="כותרת לתמונה (למשל: חפלה בקיסריה)">
+        <input type="text" id="imgDesc" class="admin-input" placeholder="תיאור קצר...">
+        <input type="file" id="imgFile" class="admin-input" accept="image/*">
+        <button class="upload-btn" onclick="uploadContent()">העלה לאתר <i class="fas fa-cloud-upload-alt"></i></button>
+        <p style="font-size:0.8rem; color:#888; margin-top:10px;">*בגרסת הדמו הזו, התמונות נשמרות בדפדפן שלך בלבד</p>
+    </div>
 
-    <section class="section" id="gallery" style="background-color: #ececf3;">
-        <h2>גלריית רגעים</h2>
-        <p>תמונות ווידאו מהשטח</p>
-        <div class="media-container">
-            <div class="media-box"><span><i class="fas fa-image"></i> כאן תבוא תמונה שלך</span></div>
-            <div class="media-box"><span><i class="fas fa-play-circle"></i> כאן יבוא סרטון וידאו</span></div>
-            <div class="media-box"><span><i class="fas fa-image"></i> כאן תבוא תמונה מהקהל</span></div>
-        </div>
-    </section>
+    <section class="gallery-section">
+        <h2 class="glow-text" style="text-align: center; font-size: 2.5rem; margin-bottom: 40px;">הגלריה של אביקו</h2>
+        <div class="gallery-grid" id="galleryGrid">
+            <div class="gallery-card">
+                <img src="https://images.unsplash.com/photo-1516280440614-6697288d5d38?q=80&w=600&auto=format&fit=crop" alt="Aviko Live">
+                <div class="gallery-info">
+                    <h3>פריצה לרחבה</h3>
+                    <p>אנרגיות שאי אפשר להסביר במילים</p>
+                </div>
+            </div>
 
-   <section class="section" id="contact">
-        <h2>בואו נחגוג יחד</h2>
-        <div class="contact-bar">
-            <div class="contact-links">
-                <a href="tel:0502266443"><i class="fas fa-phone"></i> 050-2266443</a>
-                
-                <a href="https://wa.me/972502266443" target="_blank"><i class="fab fa-whatsapp"></i> וואטסאפ</a>
-                
-                <a href="https://www.instagram.com/aviko72" target="_blank" style="color: #E1306C;">
-                    <i class="fab fa-instagram"></i> אינסטגרם
-                </a>
-                
-                <a href="https://www.tiktok.com/@aviko1972" target="_blank" style="color: #00f2ea;">
-                    <i class="fab fa-tiktok"></i> טיקטוק
-                </a>
+             <div class="gallery-card">
+                <img src="https://images.unsplash.com/photo-1533174072545-e8d4aa97edf9?q=80&w=600&auto=format&fit=crop" alt="Greek Party">
+                <div class="gallery-info">
+                    <h3>טברנה יוקרתית</h3>
+                    <p>אווירה של מיקונוס בישראל</p>
+                </div>
             </div>
         </div>
     </section>
-    <a href="https://wa.me/972502266443" class="whatsapp-float" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
 
     <footer>
-        <p>אביקו שירותי מוזיקה &copy; 2026 | עיצוב ופיתוח: bs-simple.com בועז סעדה פתרונות יצירתיים </p>
+        <p>Aviko Music &copy; 2026</p>
+        <p style="font-size: 0.8rem; color: #444; margin-top: 5px;">עיצוב ופיתוח: <strong>bs-simple.com</strong> | בועז סעדה פתרונות יצירתיים</p>
     </footer>
 
-</body>
+    <script>
+        // 1. פונקציה לפתיחת פאנל הניהול
+        function toggleAdmin() {
+            const panel = document.getElementById('adminPanel');
+            panel.classList.toggle('active');
+        }
 
+        // 2. פונקציה להעלאת תוכן (סימולציה ושמירה ב-LocalStorage)
+        function uploadContent() {
+            const title = document.getElementById('imgTitle').value;
+            const desc = document.getElementById('imgDesc').value;
+            const fileInput = document.getElementById('imgFile');
+            
+            if (fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    const imgData = e.target.result; // התמונה כקוד Base64
+                    
+                    // יצירת אובייקט תמונה
+                    const newPost = {
+                        image: imgData,
+                        title: title,
+                        desc: desc
+                    };
+
+                    // שמירה לזיכרון הדפדפן
+                    saveToStorage(newPost);
+                    
+                    // הוספה למסך מיד
+                    addCardToGallery(newPost);
+                    
+                    // ניקוי שדות
+                    document.getElementById('imgTitle').value = '';
+                    document.getElementById('imgDesc').value = '';
+                    alert('התמונה עלתה בהצלחה!');
+                }
+                
+                reader.readAsDataURL(fileInput.files[0]);
+            } else {
+                alert('אנא בחר תמונה');
+            }
+        }
+
+        // 3. פונקציה להוספת כרטיס ל-HTML
+        function addCardToGallery(post) {
+            const grid = document.getElementById('galleryGrid');
+            const card = document.createElement('div');
+            card.className = 'gallery-card';
+            card.innerHTML = `
+                <img src="${post.image}" alt="${post.title}">
+                <div class="gallery-info">
+                    <h3>${post.title}</h3>
+                    <p>${post.desc}</p>
+                </div>
+            `;
+            // הוסף להתחלה
+            grid.insertBefore(card, grid.firstChild);
+        }
+
+        // 4. שמירה ב-LocalStorage
+        function saveToStorage(post) {
+            let posts = JSON.parse(localStorage.getItem('avikoGallery')) || [];
+            posts.push(post);
+            localStorage.setItem('avikoGallery', JSON.stringify(posts));
+        }
+
+        // 5. טעינה בעליית האתר
+        window.onload = function() {
+            let posts = JSON.parse(localStorage.getItem('avikoGallery')) || [];
+            posts.forEach(post => addCardToGallery(post));
+        }
+    </script>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aviko | המאסטרו של הבוזוקי</title>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&family=Rubik+Glitch&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-dark: #050505;
+            --neon-blue: #00f2ea;
+            --neon-pink: #ff0055;
+            --gold: #FFD700;
+            --glass: rgba(255, 255, 255, 0.05);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-dark);
+            color: #fff;
+            font-family: 'Heebo', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* --- אפקטים מיוחדים --- */
+        .glow-text {
+            text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
+        }
+        
+        .gold-text {
+            color: var(--gold);
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        /* --- Hero Section: אווירת מועדון --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2), #050505), url('https://images.unsplash.com/photo-1575881875476-087b97950b84?q=80&w=1920&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, transparent 20%, #050505 90%);
+        }
+
+        .hero-content {
+            z-index: 2;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .hero h2 {
+            font-size: 2rem;
+            font-weight: 300;
+            letter-spacing: 5px;
+            margin-bottom: 30px;
+            color: #ccc;
+        }
+
+        /* --- כפתורי סושיאל זוהרים --- */
+        .social-bar {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .social-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            text-decoration: none;
+            transition: 0.3s;
+            border: 1px solid rgba(255,255,255,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-btn:hover { transform: scale(1.1) rotate(5deg); }
+        .social-btn.whatsapp:hover { background: #25d366; box-shadow: 0 0 20px #25d366; }
+        .social-btn.instagram:hover { background: #E1306C; box-shadow: 0 0 20px #E1306C; }
+        .social-btn.tiktok:hover { background: #00f2ea; color: black; box-shadow: 0 0 20px #00f2ea; }
+        .social-btn.phone:hover { background: var(--gold); color: black; box-shadow: 0 0 20px var(--gold); }
+
+        /* --- ממשק העלאה (Admin Panel) --- */
+        .admin-panel {
+            background: #1a1a1a;
+            padding: 20px;
+            margin: 40px auto;
+            max-width: 600px;
+            border-radius: 15px;
+            border: 1px solid #333;
+            text-align: center;
+            display: none; /* מוסתר כברירת מחדל */
+        }
+
+        .admin-panel.active { display: block; animation: slideDown 0.5s; }
+
+        .admin-input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            background: #333;
+            border: none;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .upload-btn {
+            background: var(--neon-blue);
+            color: black;
+            font-weight: bold;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* --- גלריה דינמית --- */
+        .gallery-section {
+            padding: 50px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-card {
+            background: var(--glass);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .gallery-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .gallery-info {
+            padding: 15px;
+        }
+
+        .gallery-info h3 { color: var(--gold); margin-bottom: 5px; }
+
+        /* --- מנגנון ניהול --- */
+        .toggle-admin {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            opacity: 0.3;
+            cursor: pointer;
+            z-index: 999;
+            font-size: 20px;
+        }
+        .toggle-admin:hover { opacity: 1; }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px;
+            border-top: 1px solid #333;
+            color: #666;
+            margin-top: 50px;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideDown { from { transform: translateY(-20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="toggle-admin" onclick="toggleAdmin()"><i class="fas fa-cog"></i></div>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1 class="glow-text">AVIKO</h1>
+            <h2 class="gold-text">GREEK MUSIC MASTER</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">הבוזוקי | הנשמה | הטברנה</p>
+            
+            <div class="social-bar">
+                <a href="tel:0502266443" class="social-btn phone"><i class="fas fa-phone"></i></a>
+                <a href="https://wa.me/972502266443" target="_blank" class="social-btn whatsapp"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://www.instagram.com/aviko72" target="_blank" class="social-btn instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@aviko1972" target="_blank" class="social-btn tiktok"><i class="fab fa-tiktok"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <div class="admin-panel" id="adminPanel">
+        <h3 style="color:var(--neon-blue); margin-bottom:15px;">הוספת תוכן לאתר (מצב מנהל)</h3>
+        <input type="text" id="imgTitle" class="admin-input" placeholder="כותרת לתמונה (למשל: חפלה בקיסריה)">
+        <input type="text" id="imgDesc" class="admin-input" placeholder="תיאור קצר...">
+        <input type="file" id="imgFile" class="admin-input" accept="image/*">
+        <button class="upload-btn" onclick="uploadContent()">העלה לאתר <i class="fas fa-cloud-upload-alt"></i></button>
+        <p style="font-size:0.8rem; color:#888; margin-top:10px;">*בגרסת הדמו הזו, התמונות נשמרות בדפדפן שלך בלבד</p>
+    </div>
+
+    <section class="gallery-section">
+        <h2 class="glow-text" style="text-align: center; font-size: 2.5rem; margin-bottom: 40px;">הגלריה של אביקו</h2>
+        <div class="gallery-grid" id="galleryGrid">
+            <div class="gallery-card">
+                <img src="https://images.unsplash.com/photo-1516280440614-6697288d5d38?q=80&w=600&auto=format&fit=crop" alt="Aviko Live">
+                <div class="gallery-info">
+                    <h3>פריצה לרחבה</h3>
+                    <p>אנרגיות שאי אפשר להסביר במילים</p>
+                </div>
+            </div>
+
+             <div class="gallery-card">
+                <img src="https://images.unsplash.com/photo-1533174072545-e8d4aa97edf9?q=80&w=600&auto=format&fit=crop" alt="Greek Party">
+                <div class="gallery-info">
+                    <h3>טברנה יוקרתית</h3>
+                    <p>אווירה של מיקונוס בישראל</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Aviko Music &copy; 2026</p>
+        <p style="font-size: 0.8rem; color: #444; margin-top: 5px;">עיצוב ופיתוח: <strong>bs-simple.com</strong> | בועז סעדה פתרונות יצירתיים</p>
+    </footer>
+
+    <script>
+        // 1. פונקציה לפתיחת פאנל הניהול
+        function toggleAdmin() {
+            const panel = document.getElementById('adminPanel');
+            panel.classList.toggle('active');
+        }
+
+        // 2. פונקציה להעלאת תוכן (סימולציה ושמירה ב-LocalStorage)
+        function uploadContent() {
+            const title = document.getElementById('imgTitle').value;
+            const desc = document.getElementById('imgDesc').value;
+            const fileInput = document.getElementById('imgFile');
+            
+            if (fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    const imgData = e.target.result; // התמונה כקוד Base64
+                    
+                    // יצירת אובייקט תמונה
+                    const newPost = {
+                        image: imgData,
+                        title: title,
+                        desc: desc
+                    };
+
+                    // שמירה לזיכרון הדפדפן
+                    saveToStorage(newPost);
+                    
+                    // הוספה למסך מיד
+                    addCardToGallery(newPost);
+                    
+                    // ניקוי שדות
+                    document.getElementById('imgTitle').value = '';
+                    document.getElementById('imgDesc').value = '';
+                    alert('התמונה עלתה בהצלחה!');
+                }
+                
+                reader.readAsDataURL(fileInput.files[0]);
+            } else {
+                alert('אנא בחר תמונה');
+            }
+        }
+
+        // 3. פונקציה להוספת כרטיס ל-HTML
+        function addCardToGallery(post) {
+            const grid = document.getElementById('galleryGrid');
+            const card = document.createElement('div');
+            card.className = 'gallery-card';
+            card.innerHTML = `
+                <img src="${post.image}" alt="${post.title}">
+                <div class="gallery-info">
+                    <h3>${post.title}</h3>
+                    <p>${post.desc}</p>
+                </div>
+            `;
+            // הוסף להתחלה
+            grid.insertBefore(card, grid.firstChild);
+        }
+
+        // 4. שמירה ב-LocalStorage
+        function saveToStorage(post) {
+            let posts = JSON.parse(localStorage.getItem('avikoGallery')) || [];
+            posts.push(post);
+            localStorage.setItem('avikoGallery', JSON.stringify(posts));
+        }
+
+        // 5. טעינה בעליית האתר
+        window.onload = function() {
+            let posts = JSON.parse(localStorage.getItem('avikoGallery')) || [];
+            posts.forEach(post => addCardToGallery(post));
+        }
+    </script>
+
+</body>
 </html>
