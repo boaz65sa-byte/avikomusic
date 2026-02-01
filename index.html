@@ -31,6 +31,7 @@
             border-radius: 4px;
         }
         
+        /* רק כשהמנהל מחובר רואים את הגבולות */
         body.admin-mode .editable:hover {
             border: 1px dashed var(--greek-blue);
             background: rgba(13, 94, 175, 0.05);
@@ -56,15 +57,15 @@
             font-size: 1rem;
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
             transition: 0.3s;
+            opacity: 0.7; /* שקיפות קלה כדי לא להפריע */
         }
         
         .admin-btn.save { background: #28a745; display: none; }
-        .admin-btn:hover { transform: scale(1.1); }
+        .admin-btn:hover { transform: scale(1.1); opacity: 1; }
 
-        /* --- Hero Section המעודכן עם וידאו --- */
+        /* --- Hero Section --- */
         .hero {
             min-height: 100vh;
-            /* תמונת הרקע המקורית - תשמש כברירת מחדל אם אין וידאו */
             background: url('https://images.unsplash.com/photo-1516483638261-f4dbaf036963?q=80&w=1920&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
@@ -74,38 +75,28 @@
             text-align: center;
             position: relative;
             padding: 20px;
-            overflow: hidden; /* חשוב כדי שהוידאו לא יגלוש */
+            overflow: hidden;
         }
 
-        /* אלמנט הוידאו החדש ברקע */
         #heroBgVideo {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* פורס את הוידאו על כל המסך */
-            z-index: 0; /* השכבה הכי נמוכה */
-            opacity: 0; /* מוסתר כברירת מחדל עד שייטען */
-            transition: opacity 1s ease; /* הופעה חלקה */
+            top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover; z-index: 0; opacity: 0; transition: opacity 1s ease;
         }
 
-        /* שכבת הבהרה (מעל הוידאו/תמונה) */
         .hero::before {
             content: '';
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(255, 255, 255, 0.3);
-            z-index: 1; /* מעל הוידאו */
+            background: rgba(255, 255, 255, 0.3); z-index: 1;
         }
 
-        /* הקופסה הלבנה עם התוכן */
         .hero-box {
             background: rgba(255, 255, 255, 0.95);
             padding: 40px 60px;
             border-radius: 8px;
             border: 4px solid var(--greek-blue);
-            z-index: 2; /* מעל הכל */
+            z-index: 2;
             box-shadow: 0 20px 60px rgba(0,0,0,0.15);
             max-width: 900px;
             width: 100%;
@@ -146,17 +137,10 @@
         }
 
         .social-link {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            color: white;
-            text-decoration: none;
-            transition: 0.3s;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            width: 60px; height: 60px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 28px; color: white; text-decoration: none;
+            transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
         .social-link:hover { transform: translateY(-5px); }
@@ -165,15 +149,10 @@
         .social-link.whatsapp-hero { background: #25d366; }
 
         .cta-btn {
-            text-decoration: none;
-            display: inline-block;
-            background: var(--gold);
-            color: #000;
-            padding: 15px 40px;
-            border-radius: 50px;
-            font-weight: bold;
-            font-size: 1.2rem;
-            transition: 0.3s;
+            text-decoration: none; display: inline-block;
+            background: var(--gold); color: #000;
+            padding: 15px 40px; border-radius: 50px;
+            font-weight: bold; font-size: 1.2rem; transition: 0.3s;
         }
         .cta-btn:hover { background: #000; color: var(--gold); }
 
@@ -188,33 +167,23 @@
         }
 
         .card {
-            background: white;
-            padding: 40px;
-            text-align: center;
+            background: white; padding: 40px; text-align: center;
             border-top: 5px solid var(--greek-blue);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-            transition: 0.3s;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05); transition: 0.3s;
         }
         .card:hover { transform: translateY(-10px); }
         .card i { font-size: 3rem; color: var(--gold); margin-bottom: 20px; }
 
         /* --- גלריה וניהול מדיה --- */
         .gallery-section {
-            background: white;
-            padding: 60px 20px;
-            text-align: center;
+            background: white; padding: 60px 20px; text-align: center;
         }
 
         .upload-panel {
-            background: #f8f9fa;
-            border: 2px dashed var(--greek-blue);
-            padding: 30px;
-            max-width: 600px;
-            margin: 20px auto;
-            border-radius: 10px;
-            display: none;
-            max-height: 80vh; /* כדי שלא יחרוג מהמסך */
-            overflow-y: auto;
+            background: #f8f9fa; border: 2px dashed var(--greek-blue);
+            padding: 30px; max-width: 600px; margin: 20px auto;
+            border-radius: 10px; display: none;
+            max-height: 80vh; overflow-y: auto;
         }
         
         body.admin-mode .upload-panel { display: block; animation: fadeIn 0.5s; }
@@ -224,19 +193,13 @@
         .upload-btn-action { background: var(--greek-blue); color: white; padding: 10px; border: none; cursor: pointer; width: 100%; font-weight: bold; }
 
         .media-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            max-width: 1200px;
-            margin: 40px auto;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px; max-width: 1200px; margin: 40px auto;
         }
 
         .media-item {
-            position: relative;
-            background: #000;
-            border-radius: 10px;
-            overflow: hidden;
-            height: 300px;
+            position: relative; background: #000;
+            border-radius: 10px; overflow: hidden; height: 300px;
         }
 
         .media-item img, .media-item iframe { width: 100%; height: 100%; object-fit: cover; border: none; }
@@ -247,7 +210,6 @@
         }
         body.admin-mode .delete-btn { display: block; }
 
-        /* כפתור וואטסאפ צף */
         .whatsapp-float {
             position: fixed; bottom: 30px; left: 30px;
             background-color: #25d366; color: white;
@@ -272,12 +234,11 @@
 
     <div class="admin-controls">
         <button class="admin-btn save" onclick="saveAllChanges()"><i class="fas fa-save"></i> שמור</button>
-        <button class="admin-btn" onclick="toggleAdminMode()"><i class="fas fa-cog"></i> עריכה</button>
+        <button class="admin-btn" onclick="toggleAdminMode()"><i class="fas fa-lock"></i> מנהל</button>
     </div>
 
     <header class="hero">
         <video id="heroBgVideo" autoplay muted loop playsinline></video>
-
         <div class="hero-box">
             <div class="greek-logo editable" id="txt_greek">Αβίκο</div>
             <div class="hebrew-logo editable" id="txt_hebrew">אביקו</div>
@@ -315,16 +276,14 @@
         <h2 class="editable" id="gallery_title" style="font-size: 2.5rem; color: var(--greek-blue); margin-bottom: 20px;">הגלריה שלנו</h2>
         
         <div class="upload-panel">
-            
             <div style="background: #e9ecef; padding: 15px; border-radius: 8px; margin-bottom: 30px;">
-                 <h3 style="margin-bottom: 10px; color: var(--greek-blue);">ניהול וידאו רקע ראשי (Hero)</h3>
-                 <p style="font-size: 0.9rem; margin-bottom: 10px;">העלה קובץ וידאו קצר (MP4) שיתנגן ברקע של הכותרת. <strong>שים לב:</strong> קבצים גדולים עלולים לא להישמר.</p>
+                 <h3 style="margin-bottom: 10px; color: var(--greek-blue);">וידאו רקע ראשי</h3>
                  <div class="input-group">
                      <input type="file" id="heroVideoFile" class="form-control" accept="video/mp4,video/webm">
                  </div>
                  <div style="display: flex; gap: 10px;">
-                     <button class="upload-btn-action" onclick="setHeroVideo()" style="background: var(--gold); color: black; flex: 2;">החלף וידאו רקע</button>
-                     <button class="upload-btn-action" onclick="clearHeroVideo()" style="background: #dc3545; flex: 1;">מחק וידאו (חזור לתמונה)</button>
+                     <button class="upload-btn-action" onclick="setHeroVideo()" style="background: var(--gold); color: black; flex: 2;">החלף וידאו</button>
+                     <button class="upload-btn-action" onclick="clearHeroVideo()" style="background: #dc3545; flex: 1;">מחק</button>
                  </div>
             </div>
             <hr style="margin: 20px 0;">
@@ -363,34 +322,60 @@
     </a>
 
     <script>
-        // --- לוגיקה קיימת (עריכת טקסטים וגלריה) ---
+        // --- הגדרות סיסמה ---
+        const ADMIN_PASSWORD = "1234"; // שנה את זה לכל סיסמה שתרצה
+
         let isAdmin = false;
+
         function toggleAdminMode() {
-            isAdmin = !isAdmin;
+            // אם אנחנו כבר במצב מנהל - נתנתק
+            if (isAdmin) {
+                isAdmin = false;
+                updateAdminUI();
+                return;
+            }
+
+            // אם אנחנו לא במצב מנהל - נבקש סיסמה
+            const input = prompt("הכנס סיסמת מנהל:");
+            
+            if (input === ADMIN_PASSWORD) {
+                isAdmin = true;
+                updateAdminUI();
+            } else if (input !== null) { // רק אם לא לחצו על ביטול
+                alert("סיסמה שגויה!");
+            }
+        }
+
+        function updateAdminUI() {
             const body = document.body;
             const saveBtn = document.querySelector('.admin-btn.save');
             const editBtn = document.querySelector('.admin-btn:not(.save)');
+
             if (isAdmin) {
                 body.classList.add('admin-mode');
                 saveBtn.style.display = 'block';
-                editBtn.innerHTML = '<i class="fas fa-times"></i> סיום';
+                editBtn.innerHTML = '<i class="fas fa-lock-open"></i> יציאה';
+                editBtn.style.background = '#dc3545'; // אדום ליציאה
                 document.querySelectorAll('.editable').forEach(el => el.setAttribute('contenteditable', 'true'));
-                // גלילה אוטומטית לפאנל הניהול
                 document.querySelector('.upload-panel').scrollIntoView({ behavior: 'smooth' });
             } else {
                 body.classList.remove('admin-mode');
                 saveBtn.style.display = 'none';
-                editBtn.innerHTML = '<i class="fas fa-cog"></i> עריכה';
+                editBtn.innerHTML = '<i class="fas fa-lock"></i> מנהל';
+                editBtn.style.background = '#333'; // חזרה לשחור
                 document.querySelectorAll('.editable').forEach(el => el.setAttribute('contenteditable', 'false'));
             }
         }
+
+        // --- שאר הפונקציות ללא שינוי ---
         function saveAllChanges() {
             const texts = {};
             document.querySelectorAll('.editable').forEach(el => texts[el.id] = el.innerText);
             localStorage.setItem('aviko_texts_v2', JSON.stringify(texts));
-            alert('נשמר!');
-            toggleAdminMode();
+            alert('נשמר בהצלחה!');
+            toggleAdminMode(); // מתנתק אוטומטית אחרי שמירה
         }
+
         function loadTexts() {
             const storedTexts = JSON.parse(localStorage.getItem('aviko_texts_v2'));
             if (storedTexts) {
@@ -400,11 +385,13 @@
                 }
             }
         }
+
         function toggleInputs() {
             const type = document.getElementById('mediaType').value;
             document.getElementById('imageInputGroup').style.display = type === 'image' ? 'block' : 'none';
             document.getElementById('videoInputGroup').style.display = type === 'video' ? 'block' : 'none';
         }
+
         function addMedia() {
             const type = document.getElementById('mediaType').value;
             if (type === 'image') {
@@ -419,6 +406,7 @@
                 if (url) saveMediaItem({ type: 'video', src: url });
             }
         }
+
         function saveMediaItem(item) {
             let gallery = JSON.parse(localStorage.getItem('aviko_gallery_v2')) || [];
             gallery.unshift(item);
@@ -427,6 +415,7 @@
             document.getElementById('imgFile').value = '';
             document.getElementById('videoUrl').value = '';
         }
+
         function deleteMedia(index) {
             if(!confirm('למחוק?')) return;
             let gallery = JSON.parse(localStorage.getItem('aviko_gallery_v2')) || [];
@@ -434,6 +423,7 @@
             localStorage.setItem('aviko_gallery_v2', JSON.stringify(gallery));
             renderGallery();
         }
+
         function renderGallery() {
             const grid = document.getElementById('mediaGrid');
             grid.innerHTML = '';
@@ -449,40 +439,34 @@
             });
         }
 
-        // --- לוגיקה חדשה: ניהול וידאו רקע (Hero Video) ---
         function setHeroVideo() {
             const fileInput = document.getElementById('heroVideoFile');
             if (fileInput.files && fileInput.files[0]) {
-                // בדיקת גודל קובץ (מגבלה של 5MB בערך לדפדפן)
                 if (fileInput.files[0].size > 5 * 1024 * 1024) {
-                    alert('הקובץ גדול מדי! אנא בחר וידאו קצר יותר (עד 5MB).');
+                    alert('קובץ גדול מדי! בחר עד 5MB.');
                     return;
                 }
-
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     const videoData = e.target.result;
                     try {
                         localStorage.setItem('aviko_hero_video', videoData);
                         applyHeroVideo(videoData);
-                        alert('וידאו הרקע עודכן בהצלחה!');
+                        alert('וידאו עודכן!');
                     } catch (error) {
-                        alert('שגיאה: הקובץ גדול מדי לזיכרון הדפדפן.');
+                        alert('שגיאה: הקובץ גדול מדי.');
                     }
                 };
                 reader.readAsDataURL(fileInput.files[0]);
-            } else {
-                alert('אנא בחר קובץ וידאו (MP4).');
             }
         }
 
         function clearHeroVideo() {
-            if(confirm('האם למחוק את וידאו הרקע ולחזור לתמונה?')) {
+            if(confirm('למחוק וידאו?')) {
                 localStorage.removeItem('aviko_hero_video');
                 const videoEl = document.getElementById('heroBgVideo');
                 videoEl.style.opacity = '0';
-                setTimeout(() => { videoEl.src = ''; }, 1000); // ניקוי המקור אחרי האנימציה
-                alert('הוידאו נמחק. חזרנו לתמונת הרקע.');
+                setTimeout(() => { videoEl.src = ''; }, 1000);
             }
         }
 
@@ -490,7 +474,6 @@
             const videoEl = document.getElementById('heroBgVideo');
             if (videoData) {
                 videoEl.src = videoData;
-                // הצגת הוידאו רק כשהוא מוכן לניגון
                 videoEl.oncanplay = function() {
                     videoEl.style.opacity = '1';
                     videoEl.play();
@@ -507,11 +490,10 @@
             }
         }
 
-        // --- אתחול ---
         window.onload = function() {
             loadTexts();
             renderGallery();
-            loadHeroVideo(); // טעינת וידאו רקע אם קיים
+            loadHeroVideo();
         }
     </script>
 
